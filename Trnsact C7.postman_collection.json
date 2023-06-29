@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "add52b57-91de-4e9d-aac1-e95761af7053",
+		"name": "Trnsact C7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Deployment (simple-messaging-example)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deploy-changed-only",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "enable-duplicate-filtering",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "deployment-name",
+							"value": "simple-messaging-example",
+							"type": "text"
+						},
+						{
+							"key": "deployment-source",
+							"value": "manual",
+							"type": "text"
+						},
+						{
+							"key": "simple-messaging-example.bpmn",
+							"type": "file",
+							"src": "/Users/ryan/Desktop/simple-messaging-example.bpmn"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/deployment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"deployment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Deployment (simple-user-task-example)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deploy-changed-only",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "enable-duplicate-filtering",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "deployment-name",
+							"value": "simple-user-task-example",
+							"type": "text"
+						},
+						{
+							"key": "deployment-source",
+							"value": "manual",
+							"type": "text"
+						},
+						{
+							"key": "simple-user-task-example.bpmn",
+							"type": "file",
+							"src": "/Users/ryan/Desktop/simple-user-task-example.bpmn"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/deployment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"deployment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Deployment (simple-call-activity-example)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deploy-changed-only",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "enable-duplicate-filtering",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "deployment-name",
+							"value": "simple-call-activity-example",
+							"type": "text"
+						},
+						{
+							"key": "deployment-source",
+							"value": "manual",
+							"type": "text"
+						},
+						{
+							"key": "simple-call-activity-example-main.bpmn",
+							"type": "file",
+							"src": "/Users/ryan/Desktop/simple-call-activity-example-main.bpmn"
+						},
+						{
+							"key": "simple-call-activity-example-sub.bpmn",
+							"type": "file",
+							"src": "/Users/ryan/Desktop/simple-call-activity-example-sub.bpmn"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/deployment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"deployment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Process Instance (simple-messaging-example)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"variables\": {},\n\t\"businessKey\":\"test1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition/key/simple-messaging-example/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition",
+						"key",
+						"simple-messaging-example",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Process Instance (simple-user-task-example)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"variables\": {\n        \"firstName\": {\n\t\t\t\"value\": \"John\",\n\t\t\t\"type\":\"String\"\n\t\t}\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition/key/simple-user-task-example/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition",
+						"key",
+						"simple-user-task-example",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Process Instance (simple-call-activity-example)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"variables\": {}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition/key/simple-call-activity-example-main/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition",
+						"key",
+						"simple-call-activity-example-main",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Correlate Message (simple-messaging-example)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"messageName\": \"simple-message\",\n    \"businessKey\": \"test1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

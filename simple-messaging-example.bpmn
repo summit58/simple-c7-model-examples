@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_12rii3e" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="simple-messaging-example" name="Simple Messaging Example" isExecutable="true">
+    <bpmn:startEvent id="start-event" name="Messaging Example Required" camunda:initiator="initiator">
+      <bpmn:outgoing>Flow_0mlxow0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0mlxow0" sourceRef="start-event" targetRef="scr-note-listening" />
+    <bpmn:scriptTask id="scr-note-listening" name="Note Listening Status" scriptFormat="javascript">
+      <bpmn:incoming>Flow_0mlxow0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1elk882</bpmn:outgoing>
+      <bpmn:script>print('Listening for the message...');</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1elk882" sourceRef="scr-note-listening" targetRef="int-listen-for-message" />
+    <bpmn:intermediateCatchEvent id="int-listen-for-message" name="Listen">
+      <bpmn:incoming>Flow_1elk882</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xiqj7i</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1o27sgk" messageRef="Message_0ussfl0" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1xiqj7i" sourceRef="int-listen-for-message" targetRef="scr-note-receipt" />
+    <bpmn:scriptTask id="scr-note-receipt" name="Note Message Receipt" scriptFormat="javascript">
+      <bpmn:incoming>Flow_1xiqj7i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1a2j7va</bpmn:outgoing>
+      <bpmn:script>print('The message has been received...');</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="end-event" name="Messaging Example Completed">
+      <bpmn:incoming>Flow_1a2j7va</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1a2j7va" sourceRef="scr-note-receipt" targetRef="end-event" />
+  </bpmn:process>
+  <bpmn:message id="Message_0ussfl0" name="simple-message" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="simple-messaging-example">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="start-event">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="170" y="142" width="54" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k0jqtc_di" bpmnElement="scr-note-listening">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_04fdiir_di" bpmnElement="int-listen-for-message">
+        <dc:Bounds x="422" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="426" y="142" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pxzflt_di" bpmnElement="scr-note-receipt">
+        <dc:Bounds x="510" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jaioh6_di" bpmnElement="end-event">
+        <dc:Bounds x="672" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="663" y="142" width="54" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0mlxow0_di" bpmnElement="Flow_0mlxow0">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1elk882_di" bpmnElement="Flow_1elk882">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="422" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xiqj7i_di" bpmnElement="Flow_1xiqj7i">
+        <di:waypoint x="458" y="117" />
+        <di:waypoint x="510" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a2j7va_di" bpmnElement="Flow_1a2j7va">
+        <di:waypoint x="610" y="117" />
+        <di:waypoint x="672" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
